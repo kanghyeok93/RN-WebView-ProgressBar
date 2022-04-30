@@ -1,6 +1,7 @@
 import {SafeAreaView} from 'react-native';
 import React, {useState} from 'react';
 import {WebView} from 'react-native-webview';
+import * as Progress from 'react-native-progress';
 
 const App = () => {
   const [progress, setProgress] = useState(0);
@@ -13,14 +14,16 @@ const App = () => {
 
   return (
     <SafeAreaView style={{height: '100%'}}>
-      <Progress.Bar
-        progress={progress}
-        width={null}
-        borderWidth={0}
-        borderRadius={0}
-        color="#27D6FF"
-        unfilledColor="#E7E7E7"
-      />
+      {!isLoaded && (
+        <Progress.Bar
+          progress={progress}
+          width={null}
+          borderWidth={0}
+          borderRadius={0}
+          color="#27D6FF"
+          unfilledColor="#E7E7E7"
+        />
+      )}
       <WebView
         source={{uri: 'https://www.metavv.com/'}}
         // loading progress 상태 체크
